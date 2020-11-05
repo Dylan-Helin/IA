@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.17)
+project(IA C)
+
+set(CMAKE_C_STANDARD 99)
+
+add_executable(IA main.c)
