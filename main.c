@@ -1,3 +1,7 @@
+/**
+GUERY Angèle
+HELIN Dylan
+**/
 #include <stdio.h>
 
 int main() {
