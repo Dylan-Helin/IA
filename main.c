@@ -23,11 +23,7 @@ int main() {
     Plateau p;
     CoupsJouables tab;
 
-    for (int i = 0; i < 8; ++i) {
-        for (int j = 0; j < 8; ++j) {
-            p[i][j]=0;
-        }
-    }
+
     initialisationJoueur(&j1, &j2, false, false);
     initialisationPlateau (p);
 
