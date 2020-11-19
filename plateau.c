@@ -37,7 +37,9 @@ void initialiserLesCoups(CoupsJouables tab,Plateau p,int couleur){
     for (int i = 0;i<8;i++) {
         for (int j = 0; j < 8; j++) {
             if(p[j][i]==0){
-                if((i>0 && p[j][i-1]==couleur*-1) || (i<7 && p[j][i+1]==couleur*-1) || (j>0 && p[j-1][i]==couleur*-1) || (j<7 && p[+1][i]==couleur*-1)){
+                if((i>0 && p[j][i-1]==couleur*-1) || (i<7 && p[j][i+1]==couleur*-1) || (j>0 && p[j-1][i]==couleur*-1) ||
+                    (j<7 && p[j+1][i]==couleur*-1) || (j<7 && i<7 && p[j+1][i+1]==couleur*-1) || (j<7 && i>0 && p[j+1][i-1]==couleur*-1)
+                    || (j>0 && i<7 && p[j-1][i+1]==couleur*-1) || (j>0 && i>0 && p[j-1][i-1]==couleur*-1)){
                     tab[k].x=j;
                     tab[k].y=i;
                 }
