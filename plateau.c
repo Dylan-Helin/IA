@@ -91,6 +91,13 @@ int victoire (Plateau p){
 
 void initialisationPlateau (Plateau P){ //initialise le plateau pour le comme,cement d'une partie
 
+    int i,j;
+    for (i=0; i<8; i++){
+        for (j=0; j<8; j++){
+            P[i][j]=0;
+        }
+    }
+
     P[4][4]=1;
     P[5][4]=-1;
     P[4][5]=-1;
