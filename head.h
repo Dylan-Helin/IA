@@ -5,8 +5,8 @@
 #ifndef IA_HEAD_H
 #define IA_HEAD_H
 
-
-
+#include <stdio.h>
+#include "plateau.h"
 
 
 

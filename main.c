@@ -2,16 +2,16 @@
 GUERY Angèle
 HELIN Dylan
 **/
-#include <windows.h>
-#include <stdio.h>
-#include <locale.h>
+
+#include "head.h"
+
 
 int main() {
-    setlocale(LC_ALL,"");
-    printf("ÉTAGE île noël âtre forêt repère être ça\n");
-    //printf("○◙╔%c%c%c%c%c%c%c%c%c%c%c%c%c%c%c","─","┬","─","┬","─","┬","─","┬","─","┬","─","┬","─","┬","─","┐");//\n| | | | | | | | |\n├─┼─┼─┼─┼─┼─┼─┼─┤");
-    int a;
-    scanf("%d",&a);
-    printf("%d",a);
-    return 0;
+    Plateau p;
+    for (int i=0;i<8;i++){
+        for (int j = 0;j<8;j++){
+            p[i][j]=0;
+        }
+    }
+    affichage(p);
 }
