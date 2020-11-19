@@ -59,3 +59,25 @@ int appartient (int x,int y, CoupsJouables tab){
     }
     return 0;
 }
+
+int victoire (Plateau p){
+    int s=0;
+    for (int i = 0; i < 8; ++i) {
+        for (int j = 0; j < 8; ++j) {
+            if(p[j][i]==0){
+                return 0;
+            }else{
+                s=s+p[j][i];
+            }
+        }
+    }
+    if(s>0){
+        return 1;
+    }else{
+        if (s<0){
+            return -1;
+        }else{
+            return 2;
+        }
+    }
+}
