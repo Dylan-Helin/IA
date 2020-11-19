@@ -7,8 +7,7 @@ HELIN Dylan
 
 
 int main() {
-    srand (time (NULL));
-
+    srand(time(NULL));
     int tabValCaseIA[8][8]={
             {500, -150,30,10,10,30,-150,500},
             {-150,-250,0,0,0,0,-250,-150},
@@ -20,9 +19,18 @@ int main() {
             {500, -150,30,10,10,30,-150,500}
     };
 
+    Joueur j1,j2;
+    Plateau p;
+    CoupsJouables tab;
 
+    for (int i = 0; i < 8; ++i) {
+        for (int j = 0; j < 8; ++j) {
+            p[i][j]=0;
+        }
+    }
+    initialisationJoueur(&j1, &j2, false, false);
+    initialisationPlateau (p);
 
-
-
-
+    int a = initialiserLesCoups(tab,p,1);
+    affichage (p,tab);
 }
