@@ -3,4 +3,4 @@ project(IA C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(IA main.c plateau.c plateau.h)
+add_executable(IA main.c plateau.c)

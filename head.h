@@ -7,7 +7,6 @@
 
 #include <stdbool.h>
 #include <stdio.h>
-#include "plateau.h"
 
 typedef struct {
     int numero; //joueur 1 ou 2
@@ -16,22 +15,24 @@ typedef struct {
 
 }Joueur;
 
+typedef int Plateau[8][8];
 
-int tabValCaseIA[8][8]={
-        {500, -150,30,10,10,30,-150,500},
-        {-150,-250,0,0,0,0,-250,-150},
-        {30,0,1,2,2,1,0,30},
-        {10,0,2,16,16,2,0,10},
-        {10,0,2,16,16,2,0,10},
-        {30,0,1,2,2,1,0,30},
-        {-150,-250,0,0,0,0,-250,-150},
-        {500, -150,30,10,10,30,-150,500}
-};
+typedef struct{
+    int x;
+    int y;
+}Coord;
+typedef Coord CoupsJouables[64];
 
 
 void initialisationPlateau (Plateau P);
 void couleurAlea();
 
+
+
+void affichage (Plateau p,CoupsJouables tab); //affiche le plateau de jeu
+int appartient (int x,int y, CoupsJouables tab); //renvoi 1 si les coordonnées données sont jouables 0 sinon
+int initialiserLesCoups(CoupsJouables tab,Plateau p,int couleur); //liste tous les coups jouables pour la couleur actuelle
+int victoire (Plateau p); //retourne 1 si les blancs gagnent, -1 pour les noirs et 0 si la partie continue
 
 
 #endif //IA_HEAD_H
