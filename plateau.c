@@ -2,7 +2,9 @@
 // Created by dydy2 on 19/11/2020.
 //
 
-#include "plateau.h"
+#include <stdlib.h>
+#include "head.h"
+#include "time.h"
 
 void affichage (Plateau p,CoupsJouables tab){
     printf("---------------------------------\n");
@@ -86,4 +88,24 @@ int victoire (Plateau p){
             return 2;
         }
     }
+}
+
+void initialisationPlateau (Plateau P){ //initialise le plateau pour le comme,cement d'une partie
+
+    P[4][4]=1;
+    P[5][4]=-1;
+    P[4][5]=-1;
+    P[5][5]=1;
+
+}
+
+void couleurAlea(){
+    int a;
+    srand (time (NULL));
+    a = rand() % 2;
+    if(a==0){
+        a=-1;
+    }
+    printf("%d", a);
+
 }
