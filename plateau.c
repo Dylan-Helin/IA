@@ -2,9 +2,8 @@
 // Created by dydy2 on 19/11/2020.
 //
 
-#include <stdlib.h>
+
 #include "head.h"
-#include "time.h"
 
 void affichage (Plateau p,CoupsJouables tab){
     printf("---------------------------------\n");
@@ -99,13 +98,20 @@ void initialisationPlateau (Plateau P){ //initialise le plateau pour le comme,ce
 
 }
 
-void couleurAlea(){
+void initialisationJoueur(Joueur *j1, Joueur *j2, bool b1, bool b2){
     int a;
-    srand (time (NULL));
-    a = rand() % 2;
+    j1->numero = 1; //joueur 1et 2
+    j2->numero = 2;
+
+    j1->IA = b1; //IA ou non IA en fonction de ce qui a été choisit
+    j2->IA = b2;
+
+    a = rand() % 2; //couleur aléatoire 1 si blanc -1 si noir
     if(a==0){
         a=-1;
     }
-    printf("%d", a);
+
+    j1->couleur = a;
+    j2->couleur = a*(-1);
 
 }

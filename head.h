@@ -6,7 +6,10 @@
 #define IA_HEAD_H
 
 #include <stdbool.h>
+#include <stdlib.h>
 #include <stdio.h>
+#include "time.h"
+
 
 typedef struct {
     int numero; //joueur 1 ou 2
@@ -25,7 +28,9 @@ typedef Coord CoupsJouables[64];
 
 
 void initialisationPlateau (Plateau P);
-void couleurAlea();
+void initialisationJoueur(Joueur *j1, Joueur *j2, bool b1, bool b2);
+
+
 
 
 

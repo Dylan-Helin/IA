@@ -7,6 +7,8 @@ HELIN Dylan
 
 
 int main() {
+    srand (time (NULL));
+
     int tabValCaseIA[8][8]={
             {500, -150,30,10,10,30,-150,500},
             {-150,-250,0,0,0,0,-250,-150},
@@ -18,6 +20,9 @@ int main() {
             {500, -150,30,10,10,30,-150,500}
     };
 
-    //couleurAlea();
-    printf("hello world");
+
+
+
+
+
 }
