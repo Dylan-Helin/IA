@@ -28,7 +28,7 @@ void affichage (Plateau p,CoupsJouables tab){
     }
 }
 
-void initialiserLesCoups(CoupsJouables tab,Plateau p,int couleur){
+int initialiserLesCoups(CoupsJouables tab,Plateau p,int couleur){
     for(int i = 0;i<64;i++){
         tab[i].x=-1;
         tab[i].y=-1;
@@ -42,9 +42,15 @@ void initialiserLesCoups(CoupsJouables tab,Plateau p,int couleur){
                     || (j>0 && i<7 && p[j-1][i+1]==couleur*-1) || (j>0 && i>0 && p[j-1][i-1]==couleur*-1)){
                     tab[k].x=j;
                     tab[k].y=i;
+                    k++;
                 }
             }
         }
+    }
+    if (k>0){
+        return 1;
+    }else{
+        return 0;
     }
 }
 
