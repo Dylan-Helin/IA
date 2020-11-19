@@ -29,18 +29,31 @@ void affichage (Plateau p,CoupsJouables tab){
     }
 }
 
-int initialiserLesCoups(CoupsJouables tab,Plateau p,int couleur){
-    for(int i = 0;i<64;i++){
+//liste tous les coups jouables pour la couleur actuelle
+int initialiserLesCoups(CoupsJouables tab,Plateau p,int tour){
+    int couleur;
+    if (tour%2==0){
+        couleur=-1; //si c'est un tour pair alors c'est le tour des noirs
+    }else{
+        couleur=1;  //si c'est un tour impair alors c'est le tour des blancs
+    }
+    for(int i = 0;i<64;i++){    //initialise le tableau des coups a des valeurs impossibles
         tab[i].x=-1;
         tab[i].y=-1;
     }
     int k=0;
+    //vérifie toutes les positions du plateau pour savoir si on peut poser un pion dans toutes les directions
     for (int i = 0;i<8;i++) {
         for (int j = 0; j < 8; j++) {
             if(p[j][i]==0){
                 if((i>0 && p[j][i-1]==couleur*-1) || (i<7 && p[j][i+1]==couleur*-1) || (j>0 && p[j-1][i]==couleur*-1) ||
                     (j<7 && p[j+1][i]==couleur*-1) || (j<7 && i<7 && p[j+1][i+1]==couleur*-1) || (j<7 && i>0 && p[j+1][i-1]==couleur*-1)
                     || (j>0 && i<7 && p[j-1][i+1]==couleur*-1) || (j>0 && i>0 && p[j-1][i-1]==couleur*-1)){
+                    /**
+                     *
+                     * ajouter le test si on peut manger
+                     *
+                     **/
                     tab[k].x=j;
                     tab[k].y=i;
                     k++;
@@ -49,9 +62,9 @@ int initialiserLesCoups(CoupsJouables tab,Plateau p,int couleur){
         }
     }
     if (k>0){
-        return 1;
+        return 1; //retourne 1 si il y a des coups possible
     }else{
-        return 0;
+        return 0; //retourne 0 si aucun coup n'est possible
     }
 }
 

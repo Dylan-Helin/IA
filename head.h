@@ -36,7 +36,7 @@ void initialisationJoueur(Joueur *j1, Joueur *j2, bool b1, bool b2);
 
 void affichage (Plateau p,CoupsJouables tab); //affiche le plateau de jeu
 int appartient (int x,int y, CoupsJouables tab); //renvoi 1 si les coordonnées données sont jouables 0 sinon
-int initialiserLesCoups(CoupsJouables tab,Plateau p,int couleur); //liste tous les coups jouables pour la couleur actuelle
+int initialiserLesCoups(CoupsJouables tab,Plateau p,int tour); //liste tous les coups jouables pour la couleur actuelle
 int victoire (Plateau p); //retourne 1 si les blancs gagnent, -1 pour les noirs et 0 si la partie continue
 
 
