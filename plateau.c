@@ -98,10 +98,10 @@ void initialisationPlateau (Plateau P){ //initialise le plateau pour le comme,ce
         }
     }
 
+    P[3][3]=1;
+    P[4][3]=-1;
+    P[3][4]=-1;
     P[4][4]=1;
-    P[5][4]=-1;
-    P[4][5]=-1;
-    P[5][5]=1;
 
 }
 
