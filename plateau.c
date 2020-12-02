@@ -464,3 +464,20 @@ void afficherTourJoueur(int tour, Joueur j1){
         }
     }
 }
+
+void nbCouleur(Plateau p){
+    int i,j;
+    int noir=0;
+    int blanc=0;
+    for(i=0; i<8; i++){
+        for(j=0; j<8; j++){
+            if(p[i][j]==-1){
+                noir++;
+            }
+            else{
+                blanc++;
+            }
+        }
+    }
+    printf("\n Nombre de pion noir : %d \n Nombre de pion blanc : %d \n", noir, blanc);
+}

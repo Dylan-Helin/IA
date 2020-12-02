@@ -31,6 +31,7 @@ void initialisationPlateau (Plateau P);
 void initialisationJoueur(Joueur *j1, Joueur *j2, bool b1, bool b2);
 void changerCouleur(Plateau p, int x, int y, int tour );
 int placerPion(int tour, CoupsJouables tab, Plateau p);
+void nbCouleur(Plateau p);
 
 
 
