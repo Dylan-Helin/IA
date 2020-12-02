@@ -24,9 +24,9 @@ int main() {
     Joueur j1,j2;
     Plateau p;
     CoupsJouables tab;
-
-
-    initialisationJoueur(&j1, &j2, false, false);
+    bool IA1,IA2;
+    menuChoixJoueur(&IA1, &IA2);
+    initialisationJoueur(&j1, &j2, IA1, IA2);
     initialisationPlateau (p);
 
     int a = initialiserLesCoups(tab,p,1);

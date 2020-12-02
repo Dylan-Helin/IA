@@ -14,7 +14,7 @@
 typedef struct {
     int numero; //joueur 1 ou 2
     int couleur; //1 pour blanc, -1 pour noir (aléatoire en début de partie)
-    bool IA; //true si c'est une IA (le jueur choisit ça dans les options ou en début de jeux)
+    bool IA; //true si c'est une IA (le joueur choisit ça dans les options ou en début de jeux)
 
 }Joueur;
 
@@ -40,6 +40,7 @@ int appartient (int x,int y, CoupsJouables tab); //renvoi 1 si les coordonnées 
 int initialiserLesCoups(CoupsJouables tab,Plateau p,int tour); //liste tous les coups jouables pour la couleur actuelle
 int victoire (Plateau p); //retourne 1 si les blancs gagnent, -1 pour les noirs et 0 si la partie continue
 int peutManger(Plateau p, int couleur, int x, int y);
+void menuChoixJoueur(bool* j1, bool* j2);
 
 
 #endif //IA_HEAD_H

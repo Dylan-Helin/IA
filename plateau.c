@@ -275,3 +275,27 @@ int peutManger(Plateau p, int couleur, int x, int y){
     }
     return peutManger;
 }
+
+void menuChoixJoueur(bool* j1, bool* j2){
+    int a=0;
+    while (a!=1 && a!=2){
+        printf("Le joueur 1 est il un humain ou une IA ?\n1 : humain\n2 : IA\n");
+        scanf("%d",&a);
+    }
+    if (a==1){
+        *j1=false;
+    }else{
+        *j1=true;
+    }
+    a=0;
+    while (a!=1 && a!=2){
+        printf("Le joueur 2 est il un humain ou une IA ?\n1 : humain\n2 : IA\n");
+        scanf("%d",&a);
+    }
+    if (a==1){
+        *j2=false;
+    }else{
+        *j2=true;
+    }
+
+}
