@@ -29,7 +29,6 @@ typedef Coord CoupsJouables[64];
 
 void initialisationPlateau (Plateau P);
 void initialisationJoueur(Joueur *j1, Joueur *j2, bool b1, bool b2);
-int pasCoupPossible(CoupsJouables tab, Plateau p, int tour);
 void changerCouleur(Plateau p, int x, int y, int tour );
 int placerPion(int tour, CoupsJouables tab, Plateau p);
 
@@ -40,9 +39,10 @@ int placerPion(int tour, CoupsJouables tab, Plateau p);
 void affichage (Plateau p,CoupsJouables tab); //affiche le plateau de jeu
 int appartient (int x,int y, CoupsJouables tab); //renvoi 1 si les coordonnées données sont jouables 0 sinon
 int initialiserLesCoups(CoupsJouables tab,Plateau p,int tour); //liste tous les coups jouables pour la couleur actuelle
-int victoire (Plateau p); //retourne 1 si les blancs gagnent, -1 pour les noirs et 0 si la partie continue
+int victoire(Plateau p); //retourne 1 si les blancs gagnent, -1 pour les noirs et 0 si la partie continue
 int peutManger(Plateau p, int couleur, int x, int y);
 void menuChoixJoueur(bool* j1, bool* j2);
+void afficherTourJoueur(int tour, Joueur j1);
 
 
 #endif //IA_HEAD_H

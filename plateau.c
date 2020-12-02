@@ -14,16 +14,16 @@ void affichage (Plateau p,CoupsJouables tab){
             printf("|");
             if(p[j][i]==0){
                 if(appartient(j,i,tab)==1){
-                    printf(" 0 ");
+                    printf(" * ");
                 }else {
                     printf("   ");
                 }
             }
             if(p[j][i]==1){
-                printf(" b ");
+                printf(" B ");
             }
             if(p[j][i]==-1){
-                printf(" n ");
+                printf(" N ");
             }
         }
         printf("|");
@@ -82,7 +82,7 @@ int appartient (int x,int y, CoupsJouables tab){
     return 0;
 }
 
-int victoire (Plateau p){
+int victoire(Plateau p){
     int s=0;
     for (int i = 0; i < 8; ++i) {
         for (int j = 0; j < 8; ++j) {
@@ -138,18 +138,6 @@ void initialisationJoueur(Joueur *j1, Joueur *j2, bool b1, bool b2){
 
 }
 
-
-
-
-int pasCoupPossible(CoupsJouables tab, Plateau p, int tour){
-
-    if(initialiserLesCoups(tab, p, tour)==0){
-        tour = tour+1;
-        printf("/n Vous ne pouvez rien placer, vous passez votre tour");
-    }
-
-    return tour;
-}
 
 
 //place le pion et change les couleurs
@@ -327,11 +315,12 @@ int placerPion(int tour, CoupsJouables tab, Plateau p){
     int i,x,y;
     bool possible = false;
 
-    printf("/n veuillez rentrer la coordnonnée x");
+    printf("\n veuillez rentrer la coordnonnee x\n");
     scanf("%d", &x);
-    printf("/n veuillez rentrer la coordnonnée y");
+    printf("\n veuillez rentrer la coordnonnee y\n");
     scanf("%d", &y);
-
+    x=x-1;
+    y=y-1;
     for (i=0; i<64; i++){
         if((tab[i].x == x) && (tab[i].y == y)){
             possible = true;
@@ -345,7 +334,7 @@ int placerPion(int tour, CoupsJouables tab, Plateau p){
         return tour+1; //passe au joueur suivant
     }
     else{
-        printf("/n Impossible de poser un pion ici :( ");
+        printf("\n Impossible de poser un pion ici :( \n");
         tour = placerPion(tour, tab, p);
     }
 
@@ -458,4 +447,20 @@ void menuChoixJoueur(bool* j1, bool* j2){
         *j2=true;
     }
 
+}
+
+void afficherTourJoueur(int tour, Joueur j1){
+    if (tour%2==0){//tour des noirs
+        if (j1.couleur==-1){
+            printf("Tour du joueur 1\n");
+        }else{
+            printf("Tour du joueur 2\n");
+        }
+    }else{//tour des blancs
+        if (j1.couleur==1){
+            printf("Tour du joueur 1\n");
+        }else{
+            printf("Tour du joueur 2\n");
+        }
+    }
 }
