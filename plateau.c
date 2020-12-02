@@ -136,6 +136,8 @@ int pasCoupPossible(CoupsJouables tab, Plateau p, int tour){
     return tour;
 }
 
+
+
 //finir le premier if et mettre l'en tete et celui de la fonction précedente dans head.h
 int placerPion(int tour, CoupsJouables tab, Plateau p){
     int i,x,y;
