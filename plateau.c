@@ -49,14 +49,12 @@ int initialiserLesCoups(CoupsJouables tab,Plateau p,int tour){
                 if((i>0 && p[j][i-1]==couleur*-1) || (i<7 && p[j][i+1]==couleur*-1) || (j>0 && p[j-1][i]==couleur*-1) ||
                     (j<7 && p[j+1][i]==couleur*-1) || (j<7 && i<7 && p[j+1][i+1]==couleur*-1) || (j<7 && i>0 && p[j+1][i-1]==couleur*-1)
                     || (j>0 && i<7 && p[j-1][i+1]==couleur*-1) || (j>0 && i>0 && p[j-1][i-1]==couleur*-1)){
-                    /**
-                     *
-                     * ajouter le test si on peut manger
-                     *
-                     **/
-                    tab[k].x=j;
-                    tab[k].y=i;
-                    k++;
+                     if (peutManger(p,couleur, j, i)){
+                         tab[k].x=j;
+                         tab[k].y=i;
+                         k++;
+                     }
+
                 }
             }
         }
@@ -177,4 +175,89 @@ int placerPion(int tour, CoupsJouables tab, Plateau p){
         tour = placerPion(tour, tab, p);
     }
 
+}
+
+int peutManger(Plateau p, int couleur, int x, int y){
+    int peutManger=0;
+    int i=1;
+    //test a droite
+    while (p[x+i][y]==couleur*-1 && x+i+1<8){
+        i++;
+    }
+    if (x+i<8 && i!=1){
+        if (p[x+i][y]==couleur){
+            peutManger=1;
+        }
+    }
+    //test a gauche
+    i=1;
+    while (p[x-i][y]==couleur*-1 && x-i-1>=0){
+        i++;
+    }
+    if (x-i>=0 && i!=1){
+        if (p[x-i][y]==couleur){
+            peutManger=1;
+        }
+    }
+    //test en haut
+    i=1;
+    while (p[x][y-i]==couleur*-1 && y-i-1>=0){
+        i++;
+    }
+    if (y-i>=0 && i!=1){
+        if (p[x][y-i]==couleur){
+            peutManger=1;
+        }
+    }
+    //test en bas
+    i=1;
+    while (p[x][y+i]==couleur*-1 && y+i+1<8){
+        i++;
+    }
+    if (y+i<8 && i!=1){
+        if (p[x][y+i]==couleur){
+            peutManger=1;
+        }
+    }
+    //test droite/bas
+    i=1;
+    while (p[x+i][y+i]==couleur*-1 && y+i+1<8 && x+i+1<8){
+        i++;
+    }
+    if (y+i<8 && x+i<8 && i!=1){
+        if (p[x+i][y+i]==couleur){
+            peutManger=1;
+        }
+    }
+    //test gauche/bas
+    i=1;
+    while (p[x-i][y+i]==couleur*-1 && y+i+1<8 && x-i-1>=0){
+        i++;
+    }
+    if (y+i<8 && x-i>=0 && i!=1){
+        if (p[x-i][y+i]==couleur){
+            peutManger=1;
+        }
+    }
+    //test gauche/haut
+    i=1;
+    while (p[x-i][y-i]==couleur*-1 && y-i-1>=0 && x-i-1>=0){
+        i++;
+    }
+    if (y-i>=0 && x-i>=0 && i!=1){
+        if (p[x-i][y-i]==couleur){
+            peutManger=1;
+        }
+    }
+    //test gauche/haut
+    i=1;
+    while (p[x+i][y-i]==couleur*-1 && y-i-1>=0 && x+i+1<8){
+        i++;
+    }
+    if (y-i>=0 && x+i<8 && i!=1){
+        if (p[x+i][y-i]==couleur){
+            peutManger=1;
+        }
+    }
+    return peutManger;
 }
