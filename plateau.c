@@ -137,6 +137,20 @@ int pasCoupPossible(CoupsJouables tab, Plateau p, int tour){
 }
 
 
+void changerCouleur(Plateau P, int x, int y, int tour ){
+    if(tour%2==0){ //si c noir
+
+
+
+    }
+    else{ //si c'est blanc
+
+
+
+    }
+}
+
+
 
 //finir le premier if et mettre l'en tete et celui de la fonction précedente dans head.h
 int placerPion(int tour, CoupsJouables tab, Plateau p){
