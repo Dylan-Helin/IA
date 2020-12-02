@@ -29,6 +29,7 @@ typedef Coord CoupsJouables[64];
 
 void initialisationPlateau (Plateau P);
 void initialisationJoueur(Joueur *j1, Joueur *j2, bool b1, bool b2);
+int pasCoupPossible(CoupsJouables tab, Plateau p, int tour);
 
 
 

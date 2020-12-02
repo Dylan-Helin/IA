@@ -135,3 +135,46 @@ void initialisationJoueur(Joueur *j1, Joueur *j2, bool b1, bool b2){
     j2->couleur = a*(-1);
 
 }
+
+
+
+
+int pasCoupPossible(CoupsJouables tab, Plateau p, int tour){
+
+    if(initialiserLesCoups(tab, p, tour)==0){
+        tour = tour+1;
+        printf("/n Vous ne pouvez rien placer, vous passez votre tour");
+    }
+
+    return tour;
+}
+
+
+
+//finir le premier if et mettre l'en tete et celui de la fonction précedente dans head.h
+int placerPion(int tour, CoupsJouables tab, Plateau p){
+    int i,x,y;
+    bool possible = false;
+
+    printf("/n veuillez rentrer la coordnonnée x");
+    scanf("%d", &x);
+    printf("/n veuillez rentrer la coordnonnée y");
+    scanf("%d", &y);
+
+    for (i=0; i<64; i++){
+        if((tab[i].x == x) && (tab[i].y == y)){
+            possible = true;
+        }
+    }
+
+    if(possible==true){
+        //placer le pion et changer les couleurs
+
+        return tour+1; //passe au joueur suivant
+    }
+    else{
+        printf("/n Impossible de poser un pion ici :( ");
+        tour = placerPion(tour, tab, p);
+    }
+
+}
