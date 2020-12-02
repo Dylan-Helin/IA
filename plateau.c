@@ -6,8 +6,10 @@
 #include "head.h"
 
 void affichage (Plateau p,CoupsJouables tab){
-    printf("---------------------------------\n");
+    printf("    1   2   3   4   5   6   7   8  \n");
+    printf("  ---------------------------------\n");
     for (int i = 0;i<8;i++){
+        printf("%d ",i+1);
         for (int j = 0;j<8;j++){
             printf("|");
             if(p[j][i]==0){
@@ -24,9 +26,11 @@ void affichage (Plateau p,CoupsJouables tab){
                 printf(" n ");
             }
         }
-        printf("|\n");
-        printf("---------------------------------\n");
+        printf("|");
+        printf(" %d\n",i+1);
+        printf("  ---------------------------------\n");
     }
+    printf("    1   2   3   4   5   6   7   8  \n");
 }
 
 //liste tous les coups jouables pour la couleur actuelle
@@ -263,7 +267,8 @@ int peutManger(Plateau p, int couleur, int x, int y){
             peutManger=1;
         }
     }
-    //test gauche/haut
+    //test droite/haut
+    //test droite/haut
     i=1;
     while (p[x+i][y-i]==couleur*-1 && y-i-1>=0 && x+i+1<8){
         i++;
