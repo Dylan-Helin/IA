@@ -148,22 +148,177 @@ int pasCoupPossible(CoupsJouables tab, Plateau p, int tour){
 }
 
 
-void changerCouleur(Plateau P, int x, int y, int tour ){
+//place le pion et change les couleurs
+void changerCouleur(Plateau p, int x, int y, int tour ){
+    int couleur; //-1 noir et 1 blanc
+    bool manger=false; //si il peut manger ou non
+    int i=1;
+
     if(tour%2==0){ //si c noir
-
-
-
+        couleur = -1;
     }
     else{ //si c'est blanc
-
-
-
+        couleur = 1;
     }
+
+    p[x][y]=couleur; //on pose le pion
+
+    //test a droite
+    while (p[x+i][y]==couleur*-1 && x+i+1<8){
+        i++;
+    }
+    if (x+i<8 && i!=1){
+        if (p[x+i][y]==couleur){
+            manger=true;
+        }
+    }
+    if(manger == true){
+        i=1;
+        while (p[x+i][y]==couleur*-1){
+            p[x+i][y] = couleur;
+            i++;
+        }
+    }
+    manger = false;
+
+    //test a gauche
+    i=1;
+    while (p[x-i][y]==couleur*-1 && x-i-1>=0){
+        i++;
+    }
+    if (x-i>=0 && i!=1){
+        if (p[x-i][y]==couleur){
+            manger=true;
+        }
+    }
+    if(manger == true){
+        i=1;
+        while (p[x-i][y]==couleur*-1){
+            p[x-i][y] = couleur;
+            i++;
+        }
+    }
+    manger = false;
+
+    //test en haut
+    i=1;
+    while (p[x][y-i]==couleur*-1 && y-i-1>=0){
+        i++;
+    }
+    if (y-i>=0 && i!=1){
+        if (p[x][y-i]==couleur){
+            manger = true;
+        }
+    }
+    if(manger == true){
+        i=1;
+        while (p[x][y-i]==couleur*-1){
+            p[x][y-i] = couleur;
+            i++;
+        }
+    }
+    manger = false;
+
+    //test en bas
+    i=1;
+    while (p[x][y+i]==couleur*-1 && y+i+1<8){
+        i++;
+    }
+    if (y+i<8 && i!=1){
+        if (p[x][y+i]==couleur){
+            manger = true;
+        }
+    }
+    if(manger == true){
+        i=1;
+        while (p[x][y+i]==couleur*-1){
+            p[x][y+i] = couleur;
+            i++;
+        }
+    }
+    manger = false;
+
+    //test droite/bas
+    i=1;
+    while (p[x+i][y+i]==couleur*-1 && y+i+1<8 && x+i+1<8){
+        i++;
+    }
+    if (y+i<8 && x+i<8 && i!=1){
+        if (p[x+i][y+i]==couleur){
+           manger = true;
+        }
+    }
+    if(manger == true){
+        i=1;
+        while (p[x+i][y+i]==couleur*-1){
+            p[x+i][y+i] = couleur;
+            i++;
+        }
+    }
+    manger = false;
+
+    //test gauche/bas
+    i=1;
+    while (p[x-i][y+i]==couleur*-1 && y+i+1<8 && x-i-1>=0){
+        i++;
+    }
+    if (y+i<8 && x-i>=0 && i!=1){
+        if (p[x-i][y+i]==couleur){
+            manger = true;
+        }
+    }
+    if(manger == true){
+        i=1;
+        while (p[x-i][y+i]==couleur*-1){
+            p[x-i][y+i] = couleur;
+            i++;
+        }
+    }
+    manger = false;
+
+    //test gauche/haut
+    i=1;
+    while (p[x-i][y-i]==couleur*-1 && y-i-1>=0 && x-i-1>=0){
+        i++;
+    }
+    if (y-i>=0 && x-i>=0 && i!=1){
+        if (p[x-i][y-i]==couleur){
+            manger = true;
+        }
+    }
+    if(manger == true){
+        i=1;
+        while (p[x-i][y-i]==couleur*-1){
+            p[x-i][y-i] = couleur;
+            i++;
+        }
+    }
+    manger = false;
+
+    //test droite/haut
+    i=1;
+    while (p[x+i][y-i]==couleur*-1 && y-i-1>=0 && x+i+1<8){
+        i++;
+    }
+    if (y-i>=0 && x+i<8 && i!=1){
+        if (p[x+i][y-i]==couleur){
+            manger = true;
+        }
+    }
+    if(manger == true){
+        i=1;
+        while (p[x+i][y-i]==couleur*-1){
+            p[x+i][y-i] = couleur;
+            i++;
+        }
+    }
+
+
 }
 
 
 
-//finir le premier if et mettre l'en tete et celui de la fonction précedente dans head.h
+//permet de placer un pion si c'est possible d'en placer un, l'utilisateur va entrer des coordonnées jusqu'a ce qu'elles soit valide
 int placerPion(int tour, CoupsJouables tab, Plateau p){
     int i,x,y;
     bool possible = false;
@@ -180,7 +335,8 @@ int placerPion(int tour, CoupsJouables tab, Plateau p){
     }
 
     if(possible==true){
-        //placer le pion et changer les couleurs
+        //place le pion et change les couleurs
+        changerCouleur(p, x, y, tour);
 
         return tour+1; //passe au joueur suivant
     }
@@ -263,7 +419,7 @@ int peutManger(Plateau p, int couleur, int x, int y){
             peutManger=1;
         }
     }
-    //test gauche/haut
+    //test droite/haut
     i=1;
     while (p[x+i][y-i]==couleur*-1 && y-i-1>=0 && x+i+1<8){
         i++;
