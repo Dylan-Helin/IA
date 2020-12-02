@@ -47,6 +47,7 @@ int main() {
     }
     affichage (p,tab);
     a=victoire(p);
+    nbCouleur(p);
     if (a>0){
         printf("Victoire des Blancs\n");
     } else{
