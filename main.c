@@ -8,7 +8,7 @@ HELIN Dylan
 
 int main() {
     srand(time(NULL));
-    int tour=1; //numero du tour, si c impaire c au blanc sinon au noir
+    int tour=1; //numero du tour, si c impair c au blanc sinon au noir
 
     int tabValCaseIA[8][8]={
             {500, -150,30,10,10,30,-150,500},
