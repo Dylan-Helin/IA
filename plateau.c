@@ -63,11 +63,7 @@ int initialiserLesCoups(CoupsJouables tab,Plateau p,int tour){
             }
         }
     }
-    if (k>0){
-        return 1; //retourne 1 si il y a des coups possible
-    }else{
-        return 0; //retourne 0 si aucun coup n'est possible
-    }
+    return k;//retourne le nombre de coups jouables
 }
 
 int appartient (int x,int y, CoupsJouables tab){

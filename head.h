@@ -46,22 +46,29 @@ int peutManger(Plateau p, int couleur, int x, int y);
 void menuChoixJoueur(bool* j1, bool* j2);
 void afficherTourJoueur(int tour, Joueur j1);
 
-typedef struct Noeud;
+typedef struct Noeud Noeud;
+typedef struct Enfants Enfants;
 
-typedef struct Enfants{
-    struct Noeud* fils;
-    struct Enfants* prochainFils;
-} Enfants;
-
-typedef struct _Noeud{
-    int Plateau[8][8];
+struct Noeud{
+    Plateau p;
     CoupsJouables cj;
     int score;
     Enfants* fils;
-    struct _Noeud* precedent;
-}Noeud;
+    struct Noeud* precedent;
+};
+
+struct Enfants{
+    Noeud* fils;
+    struct Enfants* prochainFils;
+};
+
+
 
 Noeud* creationNoeud();
 
+Enfants* creationEnfant();
+
+void copiePlateau(Plateau p1,Plateau p2);
+Noeud* creerArbre(Plateau p,int tour,Plateau tabValCaseIA,Coord coup);
 
 #endif //IA_HEAD_H

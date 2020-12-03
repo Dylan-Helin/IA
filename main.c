@@ -20,7 +20,7 @@ int main() {
             {-150,-250,0,0,0,0,-250,-150},
             {500, -150,30,10,10,30,-150,500}
     };
-    int a;
+    /*int a;
     Joueur j1,j2;
     Plateau p;
     CoupsJouables tab;
@@ -56,6 +56,13 @@ int main() {
         }else{
             printf("Egalite\n");
         }
-    }
-
+    }*/
+    Noeud* n;
+    Plateau p;
+    initialisationPlateau (p);
+    Coord coup;
+    coup.x=-1;
+    coup.y=-1;
+    n=creerArbre(p,0,tabValCaseIA,coup);
+    printf("terminé");
 }
