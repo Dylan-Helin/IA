@@ -78,3 +78,32 @@ Noeud* creerArbre(Plateau p,int tour,Plateau tabValCaseIA,Coord coup){
     printf("RETURN\n");
     return n;
 }
+
+void calculScore(Noeud* n,Plateau tabValCaseIA,int tour){
+    int score=0;
+    int couleur;
+    if (tour%2==1){
+        couleur=1;
+    }else{
+        couleur=-1;
+    }
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
+            if (n->p[i][j]==couleur){
+                score=score+tabValCaseIA[i][j];
+            }
+        }
+    }
+}
+
+//fonction à finir
+int testerFils(Noeud* n,int tour, Plateau tabValCaseIA){
+    if(n->fils==NULL){
+        calculScore(n,tabValCaseIA,tour);
+    }
+}
+
+//fonction à finir
+Coord minMax(Noeud* n, int tour, Plateau tabValCaseIA){
+
+}
