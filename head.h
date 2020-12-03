@@ -1,6 +1,7 @@
-//
-// Created by aguer on 05/11/2020.
-//
+/**
+GUERY Angèle
+HELIN Dylan
+**/
 
 #ifndef IA_HEAD_H
 #define IA_HEAD_H

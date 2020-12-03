@@ -1,7 +1,7 @@
-//
-// Created by dydy2 on 19/11/2020.
-//
-
+/**
+GUERY Angèle
+HELIN Dylan
+**/
 
 #include "head.h"
 
