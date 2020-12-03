@@ -15,7 +15,6 @@ typedef struct {
     int numero; //joueur 1 ou 2
     int couleur; //1 pour blanc, -1 pour noir (aléatoire en début de partie)
     bool IA; //true si c'est une IA (le joueur choisit ça dans les options ou en début de jeux)
-
 }Joueur;
 
 typedef int Plateau[8][8];
@@ -25,6 +24,11 @@ typedef struct{
     int y;
 }Coord;
 typedef Coord CoupsJouables[64];
+
+typedef struct Enfants{
+    Noeud fils;
+    struct Enfants* prochainFils;
+} Enfants;
 
 
 void initialisationPlateau (Plateau P);
