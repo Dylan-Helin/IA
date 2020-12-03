@@ -25,10 +25,6 @@ typedef struct{
 }Coord;
 typedef Coord CoupsJouables[64];
 
-typedef struct Enfants{
-    Noeud fils;
-    struct Enfants* prochainFils;
-} Enfants;
 
 
 void initialisationPlateau (Plateau P);
@@ -49,13 +45,19 @@ int peutManger(Plateau p, int couleur, int x, int y);
 void menuChoixJoueur(bool* j1, bool* j2);
 void afficherTourJoueur(int tour, Joueur j1);
 
+typedef struct Noeud;
+
+typedef struct Enfants{
+    struct Noeud* fils;
+    struct Enfants* prochainFils;
+} Enfants;
 
 typedef struct _Noeud{
     int Plateau[8][8];
     CoupsJouables cj;
     int score;
-    Enfants fils;
-    struct _Noeud precedent;
+    Enfants* fils;
+    struct _Noeud* precedent;
 }Noeud;
 
 #endif //IA_HEAD_H
