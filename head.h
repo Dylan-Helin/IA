@@ -46,4 +46,12 @@ void menuChoixJoueur(bool* j1, bool* j2);
 void afficherTourJoueur(int tour, Joueur j1);
 
 
+typedef struct _Noeud{
+    int Plateau[8][8];
+    CoupsJouables cj;
+    int score;
+    Enfants fils;
+    struct _Noeud precedent;
+}Noeud;
+
 #endif //IA_HEAD_H
