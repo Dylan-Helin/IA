@@ -15,6 +15,16 @@ Noeud* creationNoeud(){
     free(n);
 }*/
 
+Enfants* creationEnfant(){
+    Enfants* e;
+    e=(Enfants*) malloc(sizeof(Enfants) );
+    return e;
+}
+
+void destructionEnfant(Enfants e){
+    free(e);
+}
+
 Noeud creerArbre(Plateau p,int tour){
     Noeud n;
 
