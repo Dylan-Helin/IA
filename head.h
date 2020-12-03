@@ -61,4 +61,7 @@ typedef struct _Noeud{
     struct _Noeud* precedent;
 }Noeud;
 
+Noeud* creationNoeud();
+
+
 #endif //IA_HEAD_H
