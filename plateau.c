@@ -78,26 +78,43 @@ int appartient (int x,int y, CoupsJouables tab){
     return 0;
 }
 
-int victoire(Plateau p){
+int victoire(Plateau p,CoupsJouables tab, int tour){
+    bool caseVide = false; //il reste des case vide ?
+    bool bloque = false; //les deux joueurs ne peuvent plus jouer ?
+    if(initialiserLesCoups(tab, p, tour)==0 && initialiserLesCoups(tab, p, tour+1)==0){
+        bloque = true;
+    }
     int s=0;
     for (int i = 0; i < 8; ++i) {
         for (int j = 0; j < 8; ++j) {
-            if(p[j][i]==0){
-                return 0;
-            }else{
+            if(p[j][i]==0 && caseVide == false){
+                caseVide = true; //il y a encore des cases vides
+            }
+            if(p[j][i]!=0){
                 s=s+p[j][i];
             }
+
         }
     }
-    if(s>0){
-        return 1;
-    }else{
-        if (s<0){
-            return -1;
-        }else{
-            return 2;
-        }
+
+    if (caseVide=true && bloque==false){
+        return 0; //la partie continue
     }
+    else{
+        if(s>0){
+            return 1; //blancs gagnent
+        }
+        else{
+            if (s<0){
+                return -1; //noir gagne
+            }
+            else{
+                return 2; //egalité
+            }
+        }
+
+    }
+
 }
 
 void initialisationPlateau (Plateau P){ //initialise le plateau pour le comme,cement d'une partie

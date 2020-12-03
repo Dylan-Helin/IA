@@ -41,7 +41,7 @@ void nbCouleur(Plateau p);
 void affichage (Plateau p,CoupsJouables tab); //affiche le plateau de jeu
 int appartient (int x,int y, CoupsJouables tab); //renvoi 1 si les coordonnées données sont jouables 0 sinon
 int initialiserLesCoups(CoupsJouables tab,Plateau p,int tour); //liste tous les coups jouables pour la couleur actuelle
-int victoire(Plateau p); //retourne 1 si les blancs gagnent, -1 pour les noirs et 0 si la partie continue
+int victoire(Plateau p,CoupsJouables tab, int tour); //retourne 1 si les blancs gagnent, -1 pour les noirs et 0 si la partie continue
 int peutManger(Plateau p, int couleur, int x, int y);
 void menuChoixJoueur(bool* j1, bool* j2);
 void afficherTourJoueur(int tour, Joueur j1);
