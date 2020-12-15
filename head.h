@@ -44,7 +44,7 @@ int initialiserLesCoups(CoupsJouables tab,Plateau p,int tour); //liste tous les 
 int victoire(Plateau p,CoupsJouables tab, int tour); //retourne 1 si les blancs gagnent, -1 pour les noirs et 0 si la partie continue
 int peutManger(Plateau p, int couleur, int x, int y);
 void menuChoixJoueur(bool* j1, bool* j2);
-void afficherTourJoueur(int tour, Joueur j1);
+int afficherTourJoueur(int tour, Joueur j1);
 
 typedef struct Noeud Noeud;
 typedef struct Enfants Enfants;
@@ -71,5 +71,8 @@ Enfants* creationEnfant();
 void copiePlateau(Plateau p1,Plateau p2);
 Noeud* creerArbre(Plateau p,int tour,Plateau tabValCaseIA,Coord coup, int profondeur);
 void calculScore(Noeud* n,Plateau tabValCaseIA,int tour);
+int max(Enfants* e);
+int min(Enfants* e);
+Coord meilleurCoup(Plateau actuel, Enfants* e, int max);
 
 #endif //IA_HEAD_H

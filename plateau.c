@@ -462,20 +462,26 @@ void menuChoixJoueur(bool* j1, bool* j2){
 
 }
 
-void afficherTourJoueur(int tour, Joueur j1){
+int afficherTourJoueur(int tour, Joueur j1){
+    int joueurActuel=0;
     if (tour%2==0){//tour des noirs
         if (j1.couleur==-1){
             printf("Tour du joueur 1\n");
+            joueurActuel=1;
         }else{
             printf("Tour du joueur 2\n");
+            joueurActuel=2;
         }
     }else{//tour des blancs
         if (j1.couleur==1){
             printf("Tour du joueur 1\n");
+            joueurActuel=1;
         }else{
             printf("Tour du joueur 2\n");
+            joueurActuel=2;
         }
     }
+    return joueurActuel;
 }
 
 void nbCouleur(Plateau p){

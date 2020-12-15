@@ -81,8 +81,10 @@ Noeud* creerArbre(Plateau p,int tour,Plateau tabValCaseIA,Coord coup, int profon
             courant->prochainFils=NULL;
             if (profondeur%2==0){
                 //min
+                n->score=min(n->fils);
             }else{
                 //max
+                n->score=max(n->fils);
             }
             //printf("coups possible FIN\n");
         }
@@ -92,6 +94,7 @@ Noeud* creerArbre(Plateau p,int tour,Plateau tabValCaseIA,Coord coup, int profon
         //printf("feuille\n");
     }
     //printf("RETURN\n");
+    //printf("%d\n",n->score);
     return n;
 }
 
@@ -110,18 +113,7 @@ void calculScore(Noeud* n,Plateau tabValCaseIA,int tour){
             }
         }
     }
-}
-
-//fonction à finir
-int testerFils(Noeud* n,int tour, Plateau tabValCaseIA){
-    if(n->fils==NULL){
-        calculScore(n,tabValCaseIA,tour);
-    }
-}
-
-//fonction à finir
-Coord minMax(Noeud* n, int tour, Plateau tabValCaseIA){
-
+    n->score=score;
 }
 
 int max(Enfants* e){
@@ -148,4 +140,24 @@ int min(Enfants* e){
         courant=courant->prochainFils;
     }
     return min;
+}
+
+Coord meilleurCoup(Plateau actuel, Enfants* e, int max){
+    Enfants* courant=e;
+    Coord c;
+    while (courant){
+        if(max == courant->fils->score){
+            for (int i = 0; i < 8; i++) {
+                for (int j = 0; j < 8; j++) {
+                    if (actuel[i][j]==0 && courant->fils->p[i][j]!=0){
+                        c.x=i;
+                        c.y=j;
+                    }
+                }
+            }
+            break;
+        }
+        courant=courant->prochainFils;
+    }
+    return c;
 }

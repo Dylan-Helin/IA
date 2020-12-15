@@ -20,7 +20,10 @@ int main() {
             {-150,-250,0,0,0,0,-250,-150},
             {500, -150,30,10,10,30,-150,500}
     };
-    /*int a;
+    int joueurActuel;
+    int a;
+    Noeud* n;
+    Coord coup;
     Joueur j1,j2;
     Plateau p;
     CoupsJouables tab;
@@ -34,19 +37,60 @@ int main() {
         printf("Le joueur 1 est de couleur Noire et le joueur 2 est de couleur Blanche\nLe joueur 2 commence \n");
     }
 
-    while (victoire(p)==0){
-        afficherTourJoueur(tour, j1);
-        a = initialiserLesCoups(tab,p,tour);
-        affichage (p,tab);
-        if (a==0){
-            tour = tour+1;
-            printf("\n Vous ne pouvez rien placer, vous passez votre tour\n");
-        } else{
-            tour=placerPion(tour,tab,p);
+    while (victoire(p,tab, tour)==0){
+        joueurActuel=afficherTourJoueur(tour, j1);
+        if (joueurActuel==1){
+            if (j1.IA==true){
+                a = initialiserLesCoups(tab,p,tour);
+                affichage (p,tab);
+                if (a==0){
+                    tour = tour+1;
+                } else{
+                    coup.x=-1;
+                    coup.y=-1;
+                    n=creerArbre(p,tour-1,tabValCaseIA,coup,0);
+                    coup=meilleurCoup(n->p, n->fils, n->score);
+                    changerCouleur(p, coup.x+1, coup.y+1, tour);
+                    tour++;
+                }
+            }else{
+                a = initialiserLesCoups(tab,p,tour);
+                affichage (p,tab);
+                if (a==0){
+                    tour = tour+1;
+                    printf("\n Vous ne pouvez rien placer, vous passez votre tour\n");
+                } else{
+                    tour=placerPion(tour,tab,p);
+                }
+            }
+        }else{
+            if (j2.IA==true){
+                a = initialiserLesCoups(tab,p,tour);
+                affichage (p,tab);
+                if (a==0){
+                    tour = tour+1;
+                } else{
+                    coup.x=-1;
+                    coup.y=-1;
+                    n=creerArbre(p,tour-1,tabValCaseIA,coup,0);
+                    coup=meilleurCoup(n->p, n->fils, n->score);
+                    changerCouleur(p, coup.x+1, coup.y+1, tour);
+                    tour++;
+                }
+            }else{
+                a = initialiserLesCoups(tab,p,tour);
+                affichage (p,tab);
+                if (a==0){
+                    tour = tour+1;
+                    printf("\n Vous ne pouvez rien placer, vous passez votre tour\n");
+                } else{
+                    tour=placerPion(tour,tab,p);
+                }
+            }
         }
     }
     affichage (p,tab);
-    a=victoire(p);
+    a=victoire(p,tab,tour);
     nbCouleur(p);
     if (a>0){
         printf("Victoire des Blancs\n");
@@ -56,13 +100,5 @@ int main() {
         }else{
             printf("Egalite\n");
         }
-    }*/
-    Noeud* n;
-    Plateau p;
-    initialisationPlateau (p);
-    Coord coup;
-    coup.x=-1;
-    coup.y=-1;
-    n=creerArbre(p,tour-1,tabValCaseIA,coup,0);
-    printf("terminé");
+    }
 }
