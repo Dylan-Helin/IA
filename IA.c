@@ -107,3 +107,29 @@ int testerFils(Noeud* n,int tour, Plateau tabValCaseIA){
 Coord minMax(Noeud* n, int tour, Plateau tabValCaseIA){
 
 }
+
+int max(Enfants* e){
+    int max=-2200;
+    Enfants* courant=e;
+    while (courant){
+        if(max < courant->fils->score){
+            max=courant->fils->score;
+
+        }
+        courant=courant->prochainFils;
+    }
+    return max;
+}
+
+int min(Enfants* e){
+    int min=2404;
+    Enfants* courant=e;
+    while (courant){
+        if(min > courant->fils->score){
+            min=courant->fils->score;
+
+        }
+        courant=courant->prochainFils;
+    }
+    return min;
+}
