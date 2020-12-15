@@ -97,7 +97,7 @@ int victoire(Plateau p,CoupsJouables tab, int tour){
         }
     }
 
-    if (caseVide=true && bloque==false){
+    if (caseVide==true && bloque==false){
         return 0; //la partie continue
     }
     else{

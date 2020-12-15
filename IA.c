@@ -34,48 +34,64 @@ void copiePlateau(Plateau p1,Plateau p2){
 }
 
 
-Noeud* creerArbre(Plateau p,int tour,Plateau tabValCaseIA,Coord coup){
+Noeud* creerArbre(Plateau p,int tour,Plateau tabValCaseIA,Coord coup, int profondeur){
+    //printf("nouveau Noeud tour : %d\n",tour);
     Noeud* n;
     n=creationNoeud();
+    //printf("Coup a jouer : x=%d y=%d\n",coup.x+1,coup.y+1);
+    //affichage (p,n->cj);
+    //printf("Noeud cree\n");
     Enfants* courant;
     int nbCoups;
+    //printf("avant la copie du plateau\n");
     copiePlateau(p,n->p);
+    //printf("apres la copie du plateau\n");
     if (coup.x!=-1){
+        //printf("avant le changement de couleur\n");
         changerCouleur(n->p, coup.x, coup.y, tour);
-        //printf("AAAAAAAAAAAAAA\n");
+        //printf("apres le changement de couleur\n");
     }
-    if(victoire(n->p)==0){//si ce n'est pas une victoire, on continue
+    if(victoire(n->p,n->cj,tour)==0 && profondeur<5){//si ce n'est pas une victoire ou qu'on a pas atteint la profondeur max, on continue
+        //printf("avant le calcul des coups\n");
         nbCoups=initialiserLesCoups(n->cj,n->p,tour+1);
-        printf("%d %d\n",n->cj[0].x,n->cj[0].y);
+        //printf("apres le calcul des coups\n");
+        //printf("%d %d\n",n->cj[0].x,n->cj[0].y);
         if(nbCoups==0){//pas de coup jouable, un seul fils (passer son tour)
-            printf("pas de coups possible DEBUT\n");
+            //printf("pas de coups possible DEBUT\n");
             n->fils=creationEnfant();
             n->fils->prochainFils=NULL;
-            n->fils->fils=creerArbre(n->p,tour+1,tabValCaseIA,n->cj[0]);
+            n->fils->fils=creerArbre(n->p,tour+1,tabValCaseIA,n->cj[0],profondeur+1);
             n->fils->fils->precedent=n;
+            n->score=n->fils->fils->score;
             //printf("pas de coups possible FIN\n");
         }else{//créer les fils avec tous les coups jouables
-            printf("coups possible DEBUT\n");
+            //printf("coups possible DEBUT\n");
             n->fils=creationEnfant();
             courant=n->fils;
-            courant->fils=creerArbre(n->p,tour+1,tabValCaseIA,n->cj[0]);
+            courant->fils=creerArbre(n->p,tour+1,tabValCaseIA,n->cj[0],profondeur+1);
             //printf("coups possible DEBUT2222222\n");
             courant->fils->precedent=n;
             for (int i = 1; i < nbCoups; i++) {
                 courant->prochainFils=creationEnfant();
                 courant=courant->prochainFils;
-                courant->fils=creerArbre(n->p,tour+1,tabValCaseIA,n->cj[i]);
+                courant->fils=creerArbre(n->p,tour+1,tabValCaseIA,n->cj[i],profondeur+1);
                 courant->fils->precedent=n;
                 //printf("coups possible MILIEU\n");
             }
             courant->prochainFils=NULL;
+            if (profondeur%2==0){
+                //min
+            }else{
+                //max
+            }
             //printf("coups possible FIN\n");
         }
     }else{//si c'est une fin de partie, on est a une feuille
+        calculScore(n,tabValCaseIA,tour);
         n->fils=NULL;
-        printf("feuille\n");
+        //printf("feuille\n");
     }
-    printf("RETURN\n");
+    //printf("RETURN\n");
     return n;
 }
 

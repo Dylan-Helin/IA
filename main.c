@@ -63,6 +63,6 @@ int main() {
     Coord coup;
     coup.x=-1;
     coup.y=-1;
-    n=creerArbre(p,0,tabValCaseIA,coup);
+    n=creerArbre(p,tour-1,tabValCaseIA,coup,0);
     printf("terminé");
 }

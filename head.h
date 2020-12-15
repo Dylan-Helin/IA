@@ -69,6 +69,7 @@ Noeud* creationNoeud();
 Enfants* creationEnfant();
 
 void copiePlateau(Plateau p1,Plateau p2);
-Noeud* creerArbre(Plateau p,int tour,Plateau tabValCaseIA,Coord coup);
+Noeud* creerArbre(Plateau p,int tour,Plateau tabValCaseIA,Coord coup, int profondeur);
+void calculScore(Noeud* n,Plateau tabValCaseIA,int tour);
 
 #endif //IA_HEAD_H
