@@ -38,6 +38,7 @@ int main() {
     }
 
     while (victoire(p,tab, tour)==0){
+        printf("tour numero %d:\n",tour);
         joueurActuel=afficherTourJoueur(tour, j1);
         if (joueurActuel==1){
             if (j1.IA==true){
@@ -50,7 +51,7 @@ int main() {
                     coup.y=-1;
                     n=creerArbre(p,tour-1,tabValCaseIA,coup,0);
                     coup=meilleurCoup(n->p, n->fils, n->score);
-                    changerCouleur(p, coup.x+1, coup.y+1, tour);
+                    changerCouleur(p, coup.x, coup.y, tour);
                     tour++;
                 }
             }else{
@@ -74,7 +75,7 @@ int main() {
                     coup.y=-1;
                     n=creerArbre(p,tour-1,tabValCaseIA,coup,0);
                     coup=meilleurCoup(n->p, n->fils, n->score);
-                    changerCouleur(p, coup.x+1, coup.y+1, tour);
+                    changerCouleur(p, coup.x, coup.y, tour);
                     tour++;
                 }
             }else{
@@ -89,6 +90,7 @@ int main() {
             }
         }
     }
+    printf("\n\nPartie terminee\n");
     affichage (p,tab);
     a=victoire(p,tab,tour);
     nbCouleur(p);

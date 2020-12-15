@@ -51,7 +51,7 @@ Noeud* creerArbre(Plateau p,int tour,Plateau tabValCaseIA,Coord coup, int profon
         changerCouleur(n->p, coup.x, coup.y, tour);
         //printf("apres le changement de couleur\n");
     }
-    if(victoire(n->p,n->cj,tour)==0 && profondeur<5){//si ce n'est pas une victoire ou qu'on a pas atteint la profondeur max, on continue
+    if(victoire(n->p,n->cj,tour)==0 && profondeur<4){//si ce n'est pas une victoire ou qu'on a pas atteint la profondeur max, on continue
         //printf("avant le calcul des coups\n");
         nbCoups=initialiserLesCoups(n->cj,n->p,tour+1);
         //printf("apres le calcul des coups\n");

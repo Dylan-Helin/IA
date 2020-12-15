@@ -498,5 +498,5 @@ void nbCouleur(Plateau p){
             }
         }
     }
-    printf("\n Nombre de pion noir : %d \n Nombre de pion blanc : %d \n", noir, blanc);
+    printf("\nNombre de pion noir : %d \nNombre de pion blanc : %d \n", noir, blanc);
 }
