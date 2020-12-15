@@ -99,7 +99,8 @@ Noeud* creerArbre(Plateau p,int tour,Plateau tabValCaseIA,Coord coup, int profon
 }
 
 void calculScore(Noeud* n,Plateau tabValCaseIA,int tour){
-    int score=0;
+    int score1=0;
+    int score2=0;
     int couleur;
     if (tour%2==1){
         couleur=1;
@@ -109,11 +110,14 @@ void calculScore(Noeud* n,Plateau tabValCaseIA,int tour){
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
             if (n->p[i][j]==couleur){
-                score=score+tabValCaseIA[i][j];
+                score1=score1+tabValCaseIA[i][j];
+            }
+            if (n->p[i][j]==couleur*-1){
+                score2=score2+tabValCaseIA[i][j];
             }
         }
     }
-    n->score=score;
+    n->score=score1-score2;
 }
 
 int max(Enfants* e){
