@@ -5,6 +5,11 @@ HELIN Dylan
 
 #include "head.h"
 
+/**
+ * affiche le plateau de jeu avec les pions placés et les coups possibles
+ * @param p : le plateau de jeu
+ * @param tab : le tableau des coups possibles
+ */
 void affichage (Plateau p,CoupsJouables tab){
     printf("    1   2   3   4   5   6   7   8  \n");
     printf("  ---------------------------------\n");
@@ -33,7 +38,13 @@ void affichage (Plateau p,CoupsJouables tab){
     printf("    1   2   3   4   5   6   7   8  \n");
 }
 
-//liste tous les coups jouables pour la couleur actuelle
+/**
+ * liste tous les coups jouables pour la couleur actuelle
+ * @param tab : le tableau des coups jouables
+ * @param p : le plateau de jeu
+ * @param tour : le tour actuel
+ * @return le nombre de coups jouables
+ */
 int initialiserLesCoups(CoupsJouables tab,Plateau p,int tour){
     int couleur;
     if (tour%2==0){
@@ -66,6 +77,13 @@ int initialiserLesCoups(CoupsJouables tab,Plateau p,int tour){
     return k;//retourne le nombre de coups jouables
 }
 
+/**
+ * permet de dire si un coup appartient au tableau de coups jouables
+ * @param x : la coordonnée x du coup
+ * @param y : la coordonnée y du coup
+ * @param tab : le tableau des coups jouables
+ * @return 1 si le coup est jouable, 0 sinon
+ */
 int appartient (int x,int y, CoupsJouables tab){
     for (int i = 0;i<64;i++){
         if(tab[i].x==-1 && tab[i].y==-1){
@@ -78,6 +96,13 @@ int appartient (int x,int y, CoupsJouables tab){
     return 0;
 }
 
+/**
+ * test si nous sommes dans une situation de victoire, d'égalité ou non
+ * @param p : le plateau de jeu
+ * @param tab : le tableau de coups jouables
+ * @param tour : le tour actuel
+ * @return 1 si les blancs gagnent, -1 si les noirs gagnent, 2 si il y a égalité et 0 si la partie continue
+ */
 int victoire(Plateau p,CoupsJouables tab, int tour){
     bool caseVide = false; //il reste des case vide ?
     bool bloque = false; //les deux joueurs ne peuvent plus jouer ?
@@ -117,7 +142,11 @@ int victoire(Plateau p,CoupsJouables tab, int tour){
 
 }
 
-void initialisationPlateau (Plateau P){ //initialise le plateau pour le comme,cement d'une partie
+/**
+ * initialise le plateau pour le commencement d'une partie
+ * @param P : le plateau de jeu
+ */
+void initialisationPlateau (Plateau P){
 
     int i,j;
     for (i=0; i<8; i++){
@@ -133,6 +162,13 @@ void initialisationPlateau (Plateau P){ //initialise le plateau pour le comme,ce
 
 }
 
+/**
+ * initialise les joueurs avec des valeurs données (IA ou non) et une couleur aléatoire
+ * @param j1 : le joueur 1
+ * @param j2 : le joueur 2
+ * @param b1 : le booléen pour savoir si le joueur 1 est une IA (true) ou non (false)
+ * @param b2 : le booléen pour savoir si le joueur 2 est une IA (true) ou non (false)
+ */
 void initialisationJoueur(Joueur *j1, Joueur *j2, bool b1, bool b2){
     int a;
     j1->numero = 1; //joueur 1et 2
@@ -153,7 +189,13 @@ void initialisationJoueur(Joueur *j1, Joueur *j2, bool b1, bool b2){
 
 
 
-//place le pion et change les couleurs
+/**
+ * place le pion et change les couleurs
+ * @param p : le plateau de jeu
+ * @param x : la coordonnée x du coup joué
+ * @param y : la coordonnée y du coup joué
+ * @param tour : le tour actuel
+ */
 void changerCouleur(Plateau p, int x, int y, int tour ){
     int couleur; //-1 noir et 1 blanc
     bool manger=false; //si il peut manger ou non
@@ -323,7 +365,13 @@ void changerCouleur(Plateau p, int x, int y, int tour ){
 
 
 
-//permet de placer un pion si c'est possible d'en placer un, l'utilisateur va entrer des coordonnées jusqu'a ce qu'elles soit valide
+/**
+ * permet de placer un pion si c'est possible d'en placer un, l'utilisateur va entrer des coordonnées jusqu'a ce qu'elles soit valides
+ * @param tour : le tour actuel
+ * @param tab : le tableau des coups possibles
+ * @param p : le plateau de jeu
+ * @return tour+1
+ */
 int placerPion(int tour, CoupsJouables tab, Plateau p){
     int i,x,y;
     bool possible = false;
@@ -353,6 +401,14 @@ int placerPion(int tour, CoupsJouables tab, Plateau p){
 
 }
 
+/**
+ * test si a des coordonnées données il est possible de placer un pion
+ * @param p : le plateau de jeu
+ * @param couleur : la couleur du joueur actuel
+ * @param x : la coordonnée x du pion à placer
+ * @param y : la coordonnée y du pion à placer
+ * @return 1 si le pion peut être placé et 0 sinon
+ */
 int peutManger(Plateau p, int couleur, int x, int y){
     int peutManger=0;
     int i=1;
@@ -438,6 +494,11 @@ int peutManger(Plateau p, int couleur, int x, int y){
     return peutManger;
 }
 
+/**
+ * laisse le choix à l'utilisateur de l'état des joueurs (IA ou Humain)
+ * @param j1 : le joueur 1
+ * @param j2 : le joueur 2
+ */
 void menuChoixJoueur(bool* j1, bool* j2){
     int a=0;
     while (a!=1 && a!=2){
@@ -462,6 +523,12 @@ void menuChoixJoueur(bool* j1, bool* j2){
 
 }
 
+/**
+ * affiche le tour du joueur actuel
+ * @param tour : le tour actuel
+ * @param j1 : le joueur 1
+ * @return 1 si il s'agit du tour du joueur 1 et 2 sinon
+ */
 int afficherTourJoueur(int tour, Joueur j1){
     int joueurActuel=0;
     if (tour%2==0){//tour des noirs
@@ -484,6 +551,10 @@ int afficherTourJoueur(int tour, Joueur j1){
     return joueurActuel;
 }
 
+/**
+ * compte le nombre de pions de chaque couleur sur le plateau
+ * @param p : le plateau de jeu
+ */
 void nbCouleur(Plateau p){
     int i,j;
     int noir=0;
